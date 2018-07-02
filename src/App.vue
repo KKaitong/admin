@@ -12,7 +12,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  @import "./style/style";
   body,html {
     margin: 0;
     padding: 0;

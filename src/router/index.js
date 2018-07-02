@@ -8,55 +8,82 @@ import GoodsManage from '@/view/goodsManage/'
 import AddGoods from '@/view/goodsManage/add'
 import OrderList from '@/view/orderManage/list'
 import Aftersale from '@/view/orderManage/aftersale'
-
+import User from '@/view/personalInfo/'
 Vue.use(Router)
 
 export default new Router({
   // mode: 'history',
   routes: [
+    { path: '/', redirect: '/admin/' },
     {
-      path: '/',
+      path: '/admin/',
       component: Index,
+      name: '',
       children: [
         {
-          path: '/',
+          path: '',
           name: '首页',
           component: Home
-        }
-      ]
-    },
-    {
-      path: '/goodsmanage',
-      component: Index,
-      children: [
+        },
         {
-          path: '/goodslist',
+          path: '/admin/goodslist',
           name: '商品列表',
           component: GoodsManage
         },
         {
-          path: '/addgoods',
+          path: '/admin/addgoods',
           name: '添加商品',
           component: AddGoods
-        }
-      ]
-    },
-    {
-      path: '/ordermanage',
-      component: Index,
-      children: [
+        },
         {
-          path: '/orderlist',
+          path: '/admin/orderlist',
           name: '订单列表',
           component: OrderList
         },
         {
-          path: '/aftersale',
+          path: '/admin/aftersale',
           name: '售后列表',
           component: Aftersale
+        },
+        {
+          path: '/admin/user',
+          name: '个人信息',
+          component: User
         }
       ]
     },
+    // {
+    //   path: '/goodsmanage',
+    //   component: Index,
+    //   children: [
+    //     {
+    //       path: '/goodslist',
+    //       name: '商品列表',
+    //       component: GoodsManage
+    //     },
+    //     {
+    //       path: '/addgoods',
+    //       name: '添加商品',
+    //       component: AddGoods
+    //     }
+    //   ]
+    // },
+    // {
+    //   path: '/ordermanage',
+    //   component: Index,
+    //   children: [
+    //     {
+    //       path: '/orderlist',
+    //       name: '订单列表',
+    //       component: OrderList
+    //     },
+    //     {
+    //       path: '/aftersale',
+    //       name: '售后列表',
+    //       component: Aftersale
+    //     }
+    //   ]
+    // },
     {
       path: '/login',
       name: 'login',

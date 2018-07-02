@@ -10,13 +10,12 @@
             <side-menu :menulist="menuList"></side-menu>
           </el-scrollbar>
         </el-aside>
-        <el-main style="padding: 0;margin-bottom: -17px;">
+        <el-main style="padding: 0;margin-bottom: -17px;background-color: #f2f2f2">
           <el-scrollbar class="page-component__scroll">
             <div>
               <div class="page-header">
                 <el-breadcrumb class="header-breadcrumb" separator="/">
-                  <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                  <el-breadcrumb-item :to="{ path: '/goodslist' }">商品列表</el-breadcrumb-item>
+                  <el-breadcrumb-item v-if="i.name !== '首页'" v-for="(i,k) in breadMenu" :key="k" :to="{ path: i.path }">{{ i.name ?  i.name : '首页'}}</el-breadcrumb-item>
                 </el-breadcrumb>
               </div>
               <div style="padding: 0 17px 17px">
@@ -26,9 +25,9 @@
           </el-scrollbar>
         </el-main>
       </el-container>
-      <el-footer style="background-color: #f2f2f2;height: 40px;z-index: 1">
-        <Footer></Footer>
-      </el-footer>
+      <!--<el-footer style="background-color: #f2f2f2;height: 40px;z-index: 1">-->
+        <!--<Footer></Footer>-->
+      <!--</el-footer>-->
     </el-container>
   </div>
 </template>
@@ -37,22 +36,34 @@
 import Header from '../components/header/index'
 import Footer from '../components/footer/index'
 import SideMenu from '../components/menu/index'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'index',
   components: {Footer, Header, SideMenu},
   data () {
     return {
-      menuList: []
+      menuList: [],
+      breadMenu: []
     }
   },
   created () {
     let vue = this
     document.body.style.backgroundImage = 'none'
+    vue.getPath()
     if (vue.$localStorage.fetch('userInfo')) {
       vue.getMenu()
     } else {
       // vue.needLogin()
+    }
+  },
+  mounted () {
+    let vue = this
+    window.onresize = () => {
+      if (document.body.clientWidth < 768) {
+        vue.updateCollapse(true)
+      } else {
+        vue.updateCollapse(false)
+      }
     }
   },
   computed: {
@@ -60,8 +71,20 @@ export default {
     title () {
       return this.$route.name
     }
+    // ,
+    // breadMenu () {
+    //   console.log(this.$route.matched)
+    //   return this.$route.matched
+    // }
+  },
+  watch: {
+    '$route': 'getPath'
   },
   methods: {
+    ...mapActions(['updateCollapse']),
+    getPath () {
+      this.breadMenu = this.$route.matched
+    },
     needLogin () {
       let vue = this
       vue.$alert('需要登陆', '提示', {
@@ -82,12 +105,12 @@ export default {
     }
   },
   updated () {
-    console.log(this.$route)
+    // console.log(this.$route)
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
  .index-container {
    height: 100%;
  }
@@ -96,7 +119,7 @@ export default {
  }
  .header-breadcrumb {
    padding: 17px;
-   background-color: #f2f2f2;
+   background-color: #fff;
  }
  .side-menu {
    background-color: #545c64;
