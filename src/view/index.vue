@@ -12,16 +12,7 @@
         </el-aside>
         <el-main style="padding: 0;margin-bottom: -17px;background-color: #f2f2f2">
           <el-scrollbar class="page-component__scroll">
-            <div>
-              <div class="page-header">
-                <el-breadcrumb class="header-breadcrumb" separator="/">
-                  <el-breadcrumb-item v-if="i.name !== '首页'" v-for="(i,k) in breadMenu" :key="k" :to="{ path: i.path }">{{ i.name ?  i.name : '首页'}}</el-breadcrumb-item>
-                </el-breadcrumb>
-              </div>
-              <div style="padding: 0 17px 17px">
-                <router-view/>
-              </div>
-            </div>
+            <router-view/>
           </el-scrollbar>
         </el-main>
       </el-container>
@@ -42,14 +33,14 @@ export default {
   components: {Footer, Header, SideMenu},
   data () {
     return {
-      menuList: [],
-      breadMenu: []
+      menuList: []
+      // breadMenu: []
     }
   },
   created () {
     let vue = this
     document.body.style.backgroundImage = 'none'
-    vue.getPath()
+    // vue.getPath()
     if (vue.$localStorage.fetch('userInfo')) {
       vue.getMenu()
     } else {
@@ -70,12 +61,11 @@ export default {
     ...mapState(['isCollapse']),
     title () {
       return this.$route.name
+    },
+    breadMenu () {
+      console.log(this.$route)
+      return this.$route.matched
     }
-    // ,
-    // breadMenu () {
-    //   console.log(this.$route.matched)
-    //   return this.$route.matched
-    // }
   },
   watch: {
     '$route': 'getPath'
@@ -83,7 +73,10 @@ export default {
   methods: {
     ...mapActions(['updateCollapse']),
     getPath () {
-      this.breadMenu = this.$route.matched
+      // console.log(this.$route)
+      // if (this.$route.name !== '首页') {
+      //   this.breadMenu = this.$route.matched
+      // }
     },
     needLogin () {
       let vue = this
@@ -113,13 +106,6 @@ export default {
 <style scoped lang="scss">
  .index-container {
    height: 100%;
- }
- .page-header {
-   margin-bottom: 15px;
- }
- .header-breadcrumb {
-   padding: 17px;
-   background-color: #fff;
  }
  .side-menu {
    background-color: #545c64;

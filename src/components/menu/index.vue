@@ -12,21 +12,21 @@
              :default-active="activeMenu"
              router
              :collapse="isCollapse">
-      <el-menu-item index="/admin">
+      <el-menu-item index="/">
         <i class="el-icon-menu"></i>
         <span slot="title">首页</span>
       </el-menu-item>
-      <el-menu-item index="/admin/goodslist">
+      <el-menu-item index="/goods/list">
         <i class="el-icon-goods"></i>
         <span slot="title">商品管理</span>
       </el-menu-item>
-      <el-submenu  index="/admin/order">
+      <el-submenu  index="/order">
         <template slot="title">
           <i class="el-icon-document"></i>
           <span slot="title">订单管理</span>
         </template>
-        <el-menu-item index="/admin/orderlist">订单管理</el-menu-item>
-        <el-menu-item index="/admin/aftersale">售后管理</el-menu-item>
+        <el-menu-item index="/order/orderlist">订单管理</el-menu-item>
+        <el-menu-item index="/order/aftersale">售后管理</el-menu-item>
       </el-submenu>
       <!--<el-menu-item index="4">-->
         <!--<i class="el-icon-news"></i>-->
@@ -68,7 +68,7 @@
         <!--<i class="el-icon-info"></i>-->
         <!--<span slot="title">储值卡管理</span>-->
       <!--</el-menu-item>-->
-      <el-menu-item index="/admin/user">
+      <el-menu-item index="/user">
         <i class="el-icon-info"></i>
         <span slot="title">个人信息</span>
       </el-menu-item>

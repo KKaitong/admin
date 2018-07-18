@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <el-row :gutter="20">
-      <el-col :span="6" class="label-self">{{ msg }}</el-col>
-      <el-col :span="6" class="label-self">内容</el-col>
-      <el-col :span="6" class="label-self">内容</el-col>
-      <el-col :span="6" class="label-self">内容</el-col>
-    </el-row>
-    <i class="iconfont icon-check-circle"></i>
-  </div>
+  <section>
+    <div class="page-header">
+      <el-breadcrumb class="header-breadcrumb" separator="/">
+        <el-breadcrumb-item :to="{ path: '/' }">首页 </el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="page-inner">
+      <div class="container"></div>
+    </div>
+  </section>
 </template>
 
 <script>

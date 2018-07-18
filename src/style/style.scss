@@ -1,15 +1,6 @@
 @import "element-variables";
 @import url("http://at.alicdn.com/t/font_722027_wwkke38pnx.css");
-$theme-color: $--color-primary;
-$blue: #409EFF;
-$success: #67C23A;
-$warning: #E6A23C;
-$danger: #F56C6C;
-$default: #909399;
-$black: #303133;
-$gutter_small: 10px;
-$gutter_normal: 15px;
-$gutter_big: 20px;
+@import "variables";
 //@font-face {
 //  font-family: 'iconfont';  /* project id 722027 */
 //  src: url('//at.alicdn.com/t/font_722027_wwkke38pnx.eot');
@@ -43,4 +34,15 @@ $gutter_big: 20px;
   &:last-child {
     margin-right: 0;
   }
+}
+
+.page-header {
+  margin-bottom: 15px;
+}
+.header-breadcrumb {
+  padding: 17px;
+  background-color: #fff;
+}
+.page-inner {
+  padding: 0 17px 17px;
 }
